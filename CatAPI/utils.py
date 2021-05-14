@@ -1,12 +1,3 @@
-RACA_CHOICES = (
-    ("Angorá", "Angorá"),
-    ("Maine Coon", "Maine Coon"),
-    ("Siamês", "Siamês"),
-    ("Bengala", "Bengala"),
-    ("Ragdoll", "Ragdoll"),
-    ("Persa", "Persa"),
-)
-
 LOCAL_CHOICES = (
     ("AC", "AC"),
     ("AL", "AL"),
