@@ -21,4 +21,4 @@ class Cat(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return f'{self.breed} | {self.body_type} | {self.location_origin}'
+        return self.breed

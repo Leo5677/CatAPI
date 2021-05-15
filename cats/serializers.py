@@ -6,11 +6,4 @@ class CatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cat
-        fields = (
-            'id',
-            'breed',
-            'location_origin',
-            'coat_length',
-            'body_type',
-            'pattern',
-        )
+        fields = '__all__'

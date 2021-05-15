@@ -12,7 +12,7 @@ def run():
         Cat.objects.create(
             breed=choice(list_breed),
             location_origin=choice(list_location),
-            coat_length=randint(0, 20)/10,
+            coat_length=randint(0, 21)/10,
             body_type=choice(list_body),
             pattern=f"Gato {i + 1}",
         )
