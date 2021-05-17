@@ -1,2 +1,29 @@
 [//]: <>
 #CatAPI
+Sistema de API com Django e Django Rest sobre cadastro de raças de gato, tamanho da pelagem, local de origem etc. Todo o CRUD é possível tanto através do admin do Django, como pela API. 
+#
+
+## Construção do Banco De Dados: Utilizado o DB.SQLITE3, padrão do Django. 
+#####http://127.0.0.1:8000/admin/
+Tornei alguns campos selecionáveis como location_origin e body_type, para facilitar ao usuário. 
+Já no campo coat_length, inseri um validador de valor mínimo, pois no models do Django com campo Decimal, não é possível limitar a inserção de valor mínimo, o que abre uma brecha para preencher o campo com valores negativos.
+#
+
+## Construção da API: Utilizado Django Rest Framework.
+#####http://127.0.0.1:8000/api-v1/cats/
+Criei o arquivo serializers.py na app "cats", e serializei a tabela "Cat". Criei uma classe "CatSerializer", com os argumentos: model = "Cat" (tabela em models.py) e fields = all (campos da tabela). Com isso já deixei as informações prontas para o consumo da API.
+Já no arquivo de views.py da minha app "cats", utilizei o recurso de ViewSet para facilitar e diminuir as linhas de código, porém sem perder a legibilidade. Vale ressaltar que neste ponto, utilizei o recurso de filtros e paginação da API!
+Como utilizei o recurso de ViewSet, no arquivo urls.py da app "cats" montei a rota com SimpleRouter, e na urls.py do projeto "CatAPI", indiquei com include a utilização desta minha SimpleRoute.
+Utilizei para autenticação da minha API, recurso de Tokens e/ou Sessão, tornando mais próximo a realidade.
+#
+
+## Construção de Testes: Models e API.
+#####Cada teste contém instruções sobre como executá-los. 
+#####Dentro da app "cats", montei um diretório com dois testes, um para a API outro para o Models.
+Começando com o teste do models, utilizei o recurso coverage, ele realiza testes de criação de vinte gatos, testa a string do objeto gato, no qual passei que seria o campo "breed", testa a criação de um novo location_origin retorna um ValueError, caso seja criado uma nova localização fora do escopo selecionável, o mesmo para o teste de body_type e testa se o campo coat_length possui valor negativo e se sim, retorna um ValueError.
+Já no teste da API, dentro da classe "TestCatsAPI", informo o header, no qual seria o Token de autorização de acesso da minha API, e a url para o acesso aos testes. Testando cada um dos verbos HTTP (GET, POST, PUT, PATCH e DELETE), verificando o status_code, se bate com o que cada um dos verbos retorna em caso de sucesso, e no caso do Post e do Patch, verifica se os valores enviados não sofreram nenhuma alteração durante o envio.
+#
+
+## Script para criação de três gatos: Diretório Script.
+#####O arquivo run.py contém instruções sobre como executá-lo. 
+No diretório Scripts, arquivo run.py, utilizei Cat.objects.create, randomizando os valores e iterando com um for em um range de tamanho 3, para a criação do script.

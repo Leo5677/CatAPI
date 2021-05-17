@@ -7,6 +7,11 @@ from django.core.validators import MinValueValidator
 
 
 class Cat(models.Model):
+    """
+    Tabela para criação de um gato.
+    O campo location_origin e body_type, se utiliza de tuplas montadas no arquivo utils.py para fixar as escolhas permitidas ao usuário.
+    O campo coat_length está com um validador de valor mínimo, para evitar a inserção de valores negativos.
+    """
     breed = models.CharField('Raça', max_length=100)
     location_origin = models.CharField('Local de Origem', max_length=100, choices=LOCAL_CHOICES)
     coat_length = models.DecimalField('Comprimento da Pelagem', max_digits=3, decimal_places=2,

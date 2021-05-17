@@ -124,6 +124,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DRF
+""" Configurações de nosso Rest como: métodos de autenticação, permissões de terceiros, uso de filtros e paginação. """
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',

@@ -8,6 +8,7 @@ from .serializers import CatSerializer
 
 
 class CatViewSet(viewsets.ModelViewSet):
+    """ Utilizando o ViewSet, conseguimos tornar a disponibilização dodos dados pela API possível, e utilizar filtros. """
     queryset = Cat.objects.all()
     serializer_class = CatSerializer
     filter_backends = [DjangoFilterBackend]

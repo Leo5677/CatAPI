@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from cats.urls import router
 
+"""  
+Quando utilizamos DjangoRest, precisamos informar primeiro a rota de autenticação de nossa API.
+Em seguida realizamos um include com nossa url da app, modularizando as rotas de nosso projeto e facilitando a legibilidade.
+"""
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),

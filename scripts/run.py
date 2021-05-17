@@ -1,6 +1,13 @@
 from random import randint, choice
 from cats.models import Cat
 
+"""
+Feito para testar em desenvolvimento e popular banco de dados com 3 gatos.
+Instruções:
+Executar o seguinte comando no terminal:
+python manage.py runscript run
+"""
+
 
 def run():
     list_breed = ["Amgorá", "Maine Coon", "Siamês", "Bengala", "Ragdoll", "Persa"]
@@ -12,7 +19,7 @@ def run():
         Cat.objects.create(
             breed=choice(list_breed),
             location_origin=choice(list_location),
-            coat_length=randint(0, 21)/10,
+            coat_length=randint(0, 21) / 10,
             body_type=choice(list_body),
             pattern=f"Gato {i + 1}",
         )

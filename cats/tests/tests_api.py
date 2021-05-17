@@ -1,19 +1,34 @@
 import requests
 
+"""
+Feito para testar os verbos HTTP na API, simulando um acesso através de Token.
+
+Instruções:
+1. Realizar o migrate, criar um superuser, acessar o admin, solicitar um Token e inserir ele na variável 'headers'.
+2. Rodar a Script de criação de gatos para facilitar o teste: python manage.py runscript run
+3. Executar o seguinte comando no terminal: pytest cats/tests/tests_api.py
+"""
+
 
 class TestCatsAPI:
-    headers = {'Authorization': 'Token c644ba60874114c8f8f53e9aa4e70f3e823b6520'}
+    """
+    Classe para os testes dos verbos HTTP para a API.
+    """
+    headers = {'Authorization': 'Token INSIRA SEU TOKEN AQUI'}
     url_base_cats = 'http://127.0.0.1:8000/api-v1/cats/'
 
     def test_get_cats(self):
+        """ Deve um simular um acesso às informações de todos os gatos da API, e verifica se o código recebido foi 200 """
         resposta = requests.get(url=self.url_base_cats)
         assert resposta.status_code == 200
 
     def test_get_cat(self):
+        """ Deve um simular um acesso às informações de um gato da API, e verfica se o código recebido foi 200 """
         resposta = requests.get(url=f'{self.url_base_cats}1/')
         assert resposta.status_code == 200
 
     def test_post_cat(self):
+        """ Deve um simular uma inserção de um gato na API, verificando se as informações enviadas não sofreram alterações durante o envio, e se o código recebido foi 201 """
         cria_gato = {
             "breed": "Siamês Post Test",
             "location_origin": "SP",
@@ -30,6 +45,7 @@ class TestCatsAPI:
         assert resposta.json()['pattern'] == cria_gato['pattern']
 
     def test_put_cat(self):
+        """ Deve um simular uma alteração em um gato na API, verificando se as informações enviadas não sofreram alterações durante o envio, e se o código recebido foi 200 """
         atualizar_gato = {
             "breed": "Siamês Put Test",
             "location_origin": "AC",
@@ -46,6 +62,7 @@ class TestCatsAPI:
         assert resposta.json()['pattern'] == atualizar_gato['pattern']
 
     def test_patch_cat(self):
+        """ Deve um simular uma alteração em um gato na API, verificando se a informação enviada não sofreu alteração durante o envio,e se o código recebido foi 200 """
         atualizar_raca = {
             "breed": "Siamês Patch Test",
         }
@@ -54,5 +71,6 @@ class TestCatsAPI:
         assert resposta.json()['breed'] == atualizar_raca['breed']
 
     def test_delete_cat(self):
+        """ Deve um simular a exclusão de um gato na API, verificando se o código recebido foi 204, e se a requisição foi realmente realizada com sucesso, não retornando nenhuma informação. """
         resposta = requests.delete(url=f'{self.url_base_cats}3/', headers=self.headers)
         assert resposta.status_code == 204 and len(resposta.text) == 0
