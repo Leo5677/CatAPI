@@ -1,4 +1,3 @@
-[//]: <>
 #CatAPI
 Sistema de API com Django e Django Rest sobre cadastro de raças de gato, tamanho da pelagem, local de origem etc. Todo o CRUD é possível tanto através do admin do Django, como pela API. 
 #
